@@ -1,26 +1,30 @@
 "use client";
 
-import { useContext } from "./context";
+import { useCellphoneList } from "./cellphone-list-context";
 
 export function ResultsTable() {
-  const { cellphoneList } = useContext();
+  const { cellphoneList } = useCellphoneList();
+
+  const styles = {
+    table: ["w-full", "border-collapse", "border", "border-slate-500"],
+    heading: ["bg-slate-50"],
+    headingCell: ["w-1/2", "border", "border-slate-600", "font-semibold"],
+    cell: ["border", "border-slate-700"],
+  };
 
   return (
-    <table
-      id="results-table"
-      className="w-full border-collapse border border-slate-500"
-    >
-      <thead className="bg-slate-50">
+    <table id="results-table" className={styles.table.join(" ")}>
+      <thead className={styles.heading.join(" ")}>
         <tr>
-          <th className="w-1/2 border border-slate-600 font-semibold">Número</th>
-          <th className="w-1/2 border border-slate-600 font-semibold">Válido</th>
+          <th className={styles.headingCell.join(" ")}>Número</th>
+          <th className={styles.headingCell.join(" ")}>Válido</th>
         </tr>
       </thead>
       <tbody>
         {cellphoneList.map((c, idx) => (
           <tr key={idx}>
-            <td className="border border-slate-700">{c.value}</td>
-            <td className="border border-slate-700">
+            <td className={styles.cell.join(" ")}>{c.value}</td>
+            <td className={styles.cell.join(" ")}>
               {c.valid ? "" : "Número inválido"}
             </td>
           </tr>

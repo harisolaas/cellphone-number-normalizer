@@ -1,37 +1,47 @@
 "use client";
 
+import { Button } from "./button";
 import React from "react";
-import { Button } from "./components";
+import { useNotifications } from "./notifications-context";
 
 export function CopyAllButton() {
-  const handleClick = React.useCallback(function handleClick() {
-    const table = document.getElementById("results-table");
-    if (!table) {
-      throw new Error("Failed to find Table with id #results-table");
-    }
+  const { addNotification } = useNotifications();
 
-    // Create a range to select the table
-    const range = document.createRange();
-    range.selectNode(table);
+  const handleClick = React.useCallback(
+    function handleClick() {
+      const table = document.getElementById("results-table");
+      if (!table) {
+        throw new Error("Failed to find Table with id #results-table");
+      }
 
-    // Create a selection object
-    const selection = window.getSelection();
-    selection?.removeAllRanges();
-    selection?.addRange(range);
+      // Create a range to select the table
+      const range = document.createRange();
+      range.selectNode(table);
 
-    navigator.permissions
-      .query({ name: "clipboard-write" as PermissionName })
-      .then((result) => {
-        console.log(result);
+      // Create a selection object
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
 
-        if (result.state === "granted" || result.state === "prompt") {
-          // Copy the selection to the clipboard
-          navigator.clipboard.writeText(selection?.toString() || "");
-        }
-      });
+      // Copy selection to clipboard
+      navigator.clipboard.writeText(selection?.toString() || "").then(
+        () =>
+          addNotification({
+            text: "Lista copiada al portapapeles",
+            type: "info",
+          }),
+        () =>
+          addNotification({
+            text: "No se pudo copiar la lista al portapapeles",
+            type: "warning",
+          })
+      );
 
-    // Clear the selection
-    selection?.removeAllRanges();
-  }, []);
+      // Clear the selection
+      selection?.removeAllRanges();
+    },
+    [addNotification]
+  );
+
   return <Button onClick={handleClick}>Copiar</Button>;
 }

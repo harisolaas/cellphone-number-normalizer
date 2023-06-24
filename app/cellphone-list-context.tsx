@@ -2,20 +2,20 @@
 
 import React from "react";
 
-const AppContext = React.createContext<
+const CellphoneListContext = React.createContext<
   | {
       cellphoneList: CellphoneItem[];
       setCellphoneList: React.Dispatch<React.SetStateAction<CellphoneItem[]>>;
     }
   | undefined
 >(undefined);
-AppContext.displayName = "AppContext";
+CellphoneListContext.displayName = "CellphoneListContext";
 
-export function useContext() {
-  const value = React.useContext(AppContext);
+export function useCellphoneList() {
+  const value = React.useContext(CellphoneListContext);
 
   if (value === undefined) {
-    throw new Error("useContext must be used within an AppContextProvider");
+    throw new Error("useCellphoneList must be used within an CellphoneListContextProvider");
   }
 
   return value;
@@ -26,12 +26,12 @@ interface CellphoneItem {
   valid: boolean;
 }
 
-export function AppContextProvider(props: React.PropsWithChildren<unknown>) {
+export function CellphoneListContextProvider(props: React.PropsWithChildren<unknown>) {
   const [cellphoneList, setCellphoneList] = React.useState<CellphoneItem[]>([]);
   const value = {
     cellphoneList,
     setCellphoneList,
   };
 
-  return <AppContext.Provider value={value} {...props} />;
+  return <CellphoneListContext.Provider value={value} {...props} />;
 }
