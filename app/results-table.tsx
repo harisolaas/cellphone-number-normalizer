@@ -13,14 +13,14 @@ export function ResultsTable() {
   };
 
   return (
-    <table id="results-table" className={styles.table.join(" ")}>
+    <table className={styles.table.join(" ")}>
       <thead className={styles.heading.join(" ")}>
         <tr>
           <th className={styles.headingCell.join(" ")}>Número</th>
           <th className={styles.headingCell.join(" ")}>Válido</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="results-table">
         {cellphoneList.map((c, idx) => (
           <tr key={idx}>
             <td className={styles.cell.join(" ")}>{c.value}</td>
