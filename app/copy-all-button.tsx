@@ -2,10 +2,12 @@
 
 import { Button } from "./button";
 import React from "react";
+import { useCellphoneList } from "./cellphone-list-context";
 import { useNotifications } from "./notifications-context";
 
 export function CopyAllButton() {
   const { addNotification } = useNotifications();
+  const { prefix } = useCellphoneList();
 
   const handleClick = React.useCallback(
     function handleClick() {
@@ -23,8 +25,24 @@ export function CopyAllButton() {
       selection?.removeAllRanges();
       selection?.addRange(range);
 
+      let list = selection?.toString();
+
+      // If the prefix starts with a + character, escape the
+      // entire string for Google sheets to parse it properly
+      if (prefix.startsWith("+")) {
+        list = list
+          ?.split("\n")
+          .map((row) =>
+            row
+              .split("\t")
+              .map((cell, i) => (i ? cell : `="${cell}"`))
+              .join("\t")
+          )
+          .join("\n");
+      }
+
       // Copy selection to clipboard
-      navigator.clipboard.writeText(selection?.toString() || "").then(
+      navigator.clipboard.writeText(list || "").then(
         () =>
           addNotification({
             text: "Lista copiada al portapapeles",
@@ -40,7 +58,7 @@ export function CopyAllButton() {
       // Clear the selection
       selection?.removeAllRanges();
     },
-    [addNotification]
+    [addNotification, prefix]
   );
 
   return <Button onClick={handleClick}>Copiar</Button>;

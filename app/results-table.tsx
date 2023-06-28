@@ -3,7 +3,7 @@
 import { useCellphoneList } from "./cellphone-list-context";
 
 export function ResultsTable() {
-  const { cellphoneList } = useCellphoneList();
+  const { cellphoneList, prefix } = useCellphoneList();
 
   const styles = {
     table: ["w-full", "border-collapse", "border", "border-slate-500"],
@@ -23,7 +23,7 @@ export function ResultsTable() {
       <tbody id="results-table">
         {cellphoneList.map((c, idx) => (
           <tr key={idx}>
-            <td className={styles.cell.join(" ")}>{c.value}</td>
+            <td className={styles.cell.join(" ")}>{prefix}{c.value}</td>
             <td className={styles.cell.join(" ")}>
               {c.valid ? "" : "Número inválido"}
             </td>

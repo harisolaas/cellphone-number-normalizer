@@ -14,16 +14,27 @@ export default function Home() {
           <CellphoneListContextProvider>
             <Form className="flex flex-col flex-wrap">
               <div className="flex-1 p-4">
-                <label className="block">
+                <label htmlFor="cellphone-list" className="block">
                   <span className="block text-sm font-medium text-slate-700">
                     Ingresá la lista de teléfonos
                   </span>
                   <textarea
                     className="w-full h-full"
-                    style={{ height: "calc(100vh - 135px)" }}
+                    style={{ height: "calc(100vh - 185px)" }}
                     name="cellphone-list"
                     id="cellphone-list"
                   />
+                </label>
+                <label htmlFor="prefix" className="block">
+                  <span className="block text-sm font-medium text-slate-700 mt-2">
+                    Agregar prefijo
+                  </span>
+                  <select name="prefix">
+                    <option value="">Ninguno</option>
+                    <option value="9">9</option>
+                    <option value="549">549</option>
+                    <option value="+549">+549</option>
+                  </select>
                 </label>
               </div>
               <div className="flex justify-between p-4">
