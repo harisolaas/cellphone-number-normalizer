@@ -9,7 +9,7 @@ import { ResultsTable } from "./components/results-table";
 export default function Home() {
   return (
     <>
-      <main className="h-screen grid grid-cols-2 relative">
+      <main className="grid relative md:h-screen md:grid-cols-2">
         <NotificationsContextProvider>
           <CellphoneListContextProvider>
             <Form className="flex flex-col flex-wrap">
@@ -19,7 +19,7 @@ export default function Home() {
                     Ingresá la lista de teléfonos
                   </span>
                   <textarea
-                    className="w-full h-full"
+                    className="w-full"
                     style={{ height: "calc(100vh - 185px)" }}
                     name="cellphone-list"
                     id="cellphone-list"
@@ -44,9 +44,9 @@ export default function Home() {
                 <Button type="submit">Convertir</Button>
               </div>
             </Form>
-            <div className="h-screen overflow-scroll p-4 pb-20">
+            <div className="p-4 pb-20 md:h-screen md:overflow-scroll">
               <ResultsTable />
-              <div className="w-1/2 absolute bottom-0 right-0 p-4 mx-auto bg-[#dbe2ef]">
+              <div className="absolute bottom-0 right-0 p-4 mx-auto bg-[#dbe2ef] md:w-1/2">
                 <CopyAllButton />
               </div>
             </div>
