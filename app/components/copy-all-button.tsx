@@ -2,8 +2,8 @@
 
 import { Button } from "./button";
 import React from "react";
-import { useCellphoneList } from "./cellphone-list-context";
-import { useNotifications } from "./notifications-context";
+import { useCellphoneList } from "../context/cellphone-list.context";
+import { useNotifications } from "../context/notifications.context";
 
 export function CopyAllButton() {
   const { addNotification } = useNotifications();

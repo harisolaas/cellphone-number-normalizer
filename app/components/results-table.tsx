@@ -1,6 +1,6 @@
 "use client";
 
-import { useCellphoneList } from "./cellphone-list-context";
+import { useCellphoneList } from "../context/cellphone-list.context";
 
 export function ResultsTable() {
   const { cellphoneList, prefix } = useCellphoneList();

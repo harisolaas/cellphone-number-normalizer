@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { normalize } from "./utils";
-import { useCellphoneList } from "./cellphone-list-context";
+import { normalize } from "../utils";
+import { useCellphoneList } from "../context/cellphone-list.context";
 
 export function Form(
   props: React.PropsWithChildren<React.HTMLProps<HTMLFormElement>>
@@ -15,6 +15,7 @@ export function Form(
         e.preventDefault();
 
         const formData = new FormData(e.currentTarget);
+
         setCellphoneList(normalize(formData.get("cellphone-list")));
 
         const prefix = formData.get("prefix");

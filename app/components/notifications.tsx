@@ -1,7 +1,7 @@
 "use client";
 
 import { CloseButton } from "./close-button";
-import { useNotifications } from "./notifications-context";
+import { useNotifications } from "../context/notifications.context";
 
 export function Notifications() {
   const { notifications, removeNotification } = useNotifications();

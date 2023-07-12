@@ -1,10 +1,10 @@
-import { Button } from "./button";
-import { CellphoneListContextProvider } from "./cellphone-list-context";
-import { CopyAllButton } from "./copy-all-button";
-import { Form } from "./form";
-import { Notifications } from "./notifications";
-import { NotificationsContextProvider } from "./notifications-context";
-import { ResultsTable } from "./results-table";
+import { Button } from "./components/button";
+import { CellphoneListContextProvider } from "./context/cellphone-list.context";
+import { CopyAllButton } from "./components/copy-all-button";
+import { Form } from "./components/form";
+import { Notifications } from "./components/notifications";
+import { NotificationsContextProvider } from "./context/notifications.context";
+import { ResultsTable } from "./components/results-table";
 
 export default function Home() {
   return (
