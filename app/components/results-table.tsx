@@ -17,15 +17,15 @@ export function ResultsTable() {
       <thead className={styles.heading.join(" ")}>
         <tr>
           <th className={styles.headingCell.join(" ")}>Número</th>
-          <th className={styles.headingCell.join(" ")}>Válido</th>
         </tr>
       </thead>
       <tbody id="results-table">
         {cellphoneList.map((c, idx) => (
           <tr key={idx}>
-            <td className={styles.cell.join(" ")}>{prefix}{c.value}</td>
             <td className={styles.cell.join(" ")}>
-              {c.valid ? "" : "Número inválido"}
+              {prefix}
+              {c.value}
+              {c.valid ? "" : " - Número inválido"}
             </td>
           </tr>
         ))}

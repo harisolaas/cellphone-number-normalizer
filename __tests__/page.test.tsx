@@ -33,7 +33,7 @@ test("Normalizes a list of numbers with common mistakes", async () => {
   [
     "1166190051",
     "1166190052",
-    /166190053 número inválido/i,
+    /166190053 - número inválido/i,
     "3411234567",
     "1166190054",
     "1166190055",
@@ -41,10 +41,10 @@ test("Normalizes a list of numbers with common mistakes", async () => {
     "1166190057",
     "1166190058",
     "1166190059",
-    /^número inválido/i,
-    /1234 número inválido/i,
-    /2 número inválido/i,
-    /31166190060 número inválido/i,
+    /^- número inválido/i,
+    /1234 - número inválido/i,
+    /2 - número inválido/i,
+    /31166190060 - número inválido/i,
   ].forEach((result) => {
     expect(
       screen.getByRole("row", {
