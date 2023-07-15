@@ -16,7 +16,7 @@ export function ResultsTable() {
     <table className={styles.table.join(" ")}>
       <thead className={styles.heading.join(" ")}>
         <tr>
-          <th className={styles.headingCell.join(" ")}>Número</th>
+          <th className={styles.headingCell.join(" ")}>Resultados</th>
         </tr>
       </thead>
       <tbody id="results-table">
