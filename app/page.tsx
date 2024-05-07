@@ -34,6 +34,9 @@ export default function Home() {
                     <option value="9">9</option>
                     <option value="549">549</option>
                     <option value="+549">+549</option>
+                    <option value="https://api.whatsapp.com/send?phone=">
+                      WA Link
+                    </option>
                   </select>
                 </label>
               </div>
