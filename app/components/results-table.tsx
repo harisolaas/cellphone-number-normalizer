@@ -17,7 +17,7 @@ export function ResultsTable() {
     [Column.OriginalNumber]: "Número original",
     [Column.State]: "Provincia",
     [Column.City]: "Ciudad",
-    [Column.FormattedNumber]: "Número formateado",
+    [Column.NormalizedNumber]: "Número normalizado",
   };
 
   return (
@@ -81,9 +81,9 @@ export function ResultsTable() {
               Ciudad
             </th>
           )}
-          {activeColumns.includes(Column.FormattedNumber) && (
+          {activeColumns.includes(Column.NormalizedNumber) && (
             <th scope="col" className={clsx(styles.headingCell)}>
-              Número formateado
+              Número normalizado
             </th>
           )}
         </tr>

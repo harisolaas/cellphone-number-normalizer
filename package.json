@@ -1,5 +1,5 @@
 {
-  "name": "cellphone-number-formatter",
+  "name": "cellphone-number-normalizer",
   "version": "0.1.0",
   "private": true,
   "scripts": {

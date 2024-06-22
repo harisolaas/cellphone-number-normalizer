@@ -37,7 +37,7 @@ export enum Column {
   OriginalNumber,
   State,
   City,
-  FormattedNumber,
+  NormalizedNumber,
 }
 
 export function CellphoneListContextProvider(
@@ -46,7 +46,7 @@ export function CellphoneListContextProvider(
   const [cellphoneList, setCellphoneList] = React.useState<CellphoneItem[]>([]);
   const [prefix, setPrefix] = React.useState<string>("");
   const [activeColumns, setActiveColumns] = React.useState<Column[]>([
-    Column.FormattedNumber,
+    Column.NormalizedNumber,
   ]);
   const toggleColumn = React.useCallback(function toggleColumn(column: Column) {
     setActiveColumns((prev) =>

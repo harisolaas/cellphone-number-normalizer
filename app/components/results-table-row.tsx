@@ -28,7 +28,7 @@ export function TableCellRow({
       {activeColumns.includes(Column.City) && (
         <td className={styles}>{city}</td>
       )}
-      {activeColumns.includes(Column.FormattedNumber) && (
+      {activeColumns.includes(Column.NormalizedNumber) && (
         <td className={styles}>
           {prefix}
           {value}
