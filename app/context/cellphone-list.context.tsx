@@ -8,6 +8,8 @@ const CellphoneListContext = React.createContext<
       setCellphoneList: React.Dispatch<React.SetStateAction<CellphoneItem[]>>;
       prefix: string;
       setPrefix: React.Dispatch<React.SetStateAction<string>>;
+      activeColumns: Column[];
+      toggleColumn: (column: Column) => void;
     }
   | undefined
 >(undefined);
@@ -25,9 +27,17 @@ export function useCellphoneList() {
   return value;
 }
 
-interface CellphoneItem {
+export interface CellphoneItem {
+  originalValue: string;
   value: string;
   valid: boolean;
+}
+
+export enum Column {
+  OriginalNumber,
+  State,
+  City,
+  FormattedNumber,
 }
 
 export function CellphoneListContextProvider(
@@ -35,12 +45,24 @@ export function CellphoneListContextProvider(
 ) {
   const [cellphoneList, setCellphoneList] = React.useState<CellphoneItem[]>([]);
   const [prefix, setPrefix] = React.useState<string>("");
+  const [activeColumns, setActiveColumns] = React.useState<Column[]>([
+    Column.FormattedNumber,
+  ]);
+  const toggleColumn = React.useCallback(function toggleColumn(column: Column) {
+    setActiveColumns((prev) =>
+      prev.includes(column)
+        ? prev.filter((c) => c !== column)
+        : [...prev, column]
+    );
+  }, []);
 
   const value = {
     cellphoneList,
     setCellphoneList,
     prefix,
     setPrefix,
+    activeColumns,
+    toggleColumn,
   };
 
   return <CellphoneListContext.Provider value={value} {...props} />;

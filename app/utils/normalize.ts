@@ -1,4 +1,8 @@
-export function normalize(cellphoneList: FormDataEntryValue | null) {
+import { CellphoneItem } from "../context/cellphone-list.context";
+
+export function normalize(
+  cellphoneList: FormDataEntryValue | null
+): CellphoneItem[] {
   if (typeof cellphoneList !== "string") {
     throw new Error();
   }
@@ -8,6 +12,7 @@ export function normalize(cellphoneList: FormDataEntryValue | null) {
 
     // Remove all non-numeric values
     c = c.replace(/[^0-9]/g, "");
+    const originalValue = c;
 
     // Remove the declared list from starting position
     const invalidStarts = ["549", "540", "54", "00", "0", "9"];
@@ -21,15 +26,15 @@ export function normalize(cellphoneList: FormDataEntryValue | null) {
 
     // If number length is less than 10 it cannot be normalized
     if (c.length < 10) {
-        return { value: c, valid: false };
+      return { originalValue, value: c, valid: false };
     }
-    
+
     // Numbers that are left with 10 digits and start with 11 are ready
     if (c.length === 10) {
       if (c.startsWith("15")) {
         c = c.replace("15", "11");
       }
-      return { value: c, valid: true };
+      return { originalValue, value: c, valid: true };
     }
 
     // If an item has more than 10 digits try to remove the first
@@ -40,6 +45,6 @@ export function normalize(cellphoneList: FormDataEntryValue | null) {
       valid = false;
     }
 
-    return { value: c, valid };
+    return { originalValue, value: c, valid };
   });
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { normalize } from "../utils";
 import { useCellphoneList } from "../context/cellphone-list.context";
+import { normalize } from "../utils/normalize";
 
 export function Form(
   props: React.PropsWithChildren<React.HTMLProps<HTMLFormElement>>
