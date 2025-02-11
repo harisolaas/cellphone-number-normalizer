@@ -23,10 +23,10 @@ export function TableCellRow({
         <td className={styles}>{originalValue}</td>
       )}
       {activeColumns.includes(Column.State) && (
-        <td className={styles}>{state||"-"}</td>
+        <td className={styles}>{state || "-"}</td>
       )}
       {activeColumns.includes(Column.City) && (
-        <td className={styles}>{city||"-"}</td>
+        <td className={styles}>{city || "-"}</td>
       )}
       {activeColumns.includes(Column.NormalizedNumber) && (
         <td className={styles}>
